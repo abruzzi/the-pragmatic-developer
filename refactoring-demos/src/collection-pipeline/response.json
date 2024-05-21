@@ -1,0 +1,27 @@
+{
+  "operations": [
+    {
+      "internal_legacy_field": "assign-issue",
+      "name": "Assign",
+      "desc": "Assign this issue to someone",
+      "url": "/issues/assign"
+    },
+    {
+      "internal_legacy_field": "assign-to-me",
+      "name": "Assign to me",
+      "desc": "Assign this issue to me",
+      "url": "/issues/assign-to-me"
+    },
+    {
+      "internal_legacy_field": "comment-issue",
+      "name": "Comment",
+      "desc": "Comment on this issue",
+      "url": "/comment/issue"
+    },
+    {
+      "internal_legacy_field": "log-work",
+      "name": "Log work",
+      "desc": "Log work against this issue"
+    }
+  ]
+}
