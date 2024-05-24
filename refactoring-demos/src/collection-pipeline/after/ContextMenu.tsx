@@ -1,65 +1,68 @@
-type Operation = {
-  internal_legacy_field: string;
-  name: string;
-  desc?: string;
-  url?: string;
-};
-
-export type IssueResponse = {
-  operations: Operation[];
-};
-
-const URL_OVERRIDE_FIELDS: Record<string, string> = {
-  "comment-issue": "/issues/comment",
-};
-
-const SKIP_FIELDS: string[] = ["log-work"]; // there are more in the real product
-const DIALOG_FIELDS: string[] = ["assign-issue", "comment-issue"]; // there are more in the real product
+import { IssueResponse, Operation } from "./types.ts";
+import "./ContextMenu.css";
 
 const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
-  return <ul>{children}</ul>;
+  return <ul className="dropdown-menu">{children}</ul>;
 };
-
 const ButtonMenuItem = ({ name }: { name: string }) => {
-  return <li>{name}</li>;
+  return <li className="menu-item">{name}</li>;
 };
-
 const LinkMenuItem = ({ name, url }: { name: string; url: string }) => {
   return (
-    <li>
+    <li className="menu-item">
       <a href={url}>{name}</a>
     </li>
   );
 };
 
-const convertOperations = ({
+type MenuItemData = { name: string; url: string; field: string };
+
+const URL_OVERRIDE_FIELDS: Record<string, string> = {
+  "comment-issue": "/issues/comment",
+  "assign-to-me": "/issues/assign-to-me",
+};
+
+const convertOperationsToMenuItemData = ({
   name,
   url: givenUrl,
   internal_legacy_field: field,
 }: Operation) => {
-  const url = Object.hasOwn(URL_OVERRIDE_FIELDS, field)
-    ? URL_OVERRIDE_FIELDS[field]
-    : givenUrl ?? "";
+  let url = givenUrl;
+  if (Object.hasOwn(URL_OVERRIDE_FIELDS, field)) {
+    url = URL_OVERRIDE_FIELDS[field];
+  }
 
-  return { name, url, field };
+  return {
+    name,
+    url: url ?? "",
+    field,
+  };
 };
 
-const skipFields = ({ field }: { field: string }) =>
+// there are more in the real product
+const DIALOG_FIELDS: string[] = ["assign-issue", "comment-issue"];
+
+const convertMenuItemDataToUI = ({ name, url, field }: MenuItemData) => {
+  return DIALOG_FIELDS.includes(field) ? (
+    <ButtonMenuItem key={name} name={name} />
+  ) : (
+    <LinkMenuItem key={name} name={name} url={url} />
+  );
+};
+
+// there are more in the real product
+const SKIP_FIELDS: string[] = ["log-work"];
+
+const filterLegacyFields = ({ field }: { field: string }) =>
   !SKIP_FIELDS.includes(field);
 
 const IssueContextMenu = ({ data }: { data: IssueResponse }) => {
   return (
     <DropdownMenu>
       {data.operations
-        .map(convertOperations)
-        .filter(skipFields)
-        .map(({ name, url, field }) =>
-          DIALOG_FIELDS.includes(field) ? (
-            <ButtonMenuItem key={name} name={name} />
-          ) : (
-            <LinkMenuItem key={name} name={name} url={url} />
-          )
-        )}
+        .map(convertOperationsToMenuItemData)
+        .filter(filterLegacyFields)
+        .map(convertMenuItemDataToUI)}
     </DropdownMenu>
   );
 };
