@@ -1,0 +1,19 @@
+.dropdown-menu {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  border: 1px solid #666;
+  border-radius: 6px;
+  width: 200px;
+}
+
+.dropdown-menu .menu-item {
+  list-style: none;
+  padding: 6px;
+  transition: background-color, color;
+}
+
+.dropdown-menu .menu-item:hover {
+  background-color: #646cff;
+  color: white;
+}

@@ -1,32 +1,27 @@
-type Operation = {
-  internal_legacy_field: string;
-  name: string;
-  desc?: string;
-  url?: string;
-};
-
-export type IssueResponse = {
-  operations: Operation[];
-};
+import { IssueResponse } from "./types.ts";
+import "./ContextMenu.css";
 
 const URL_OVERRIDE_FIELDS: Record<string, string> = {
   "comment-issue": "/issues/comment",
 };
 
-const SKIP_FIELDS: string[] = ["log-work"]; // there are more in the real product
-const DIALOG_FIELDS: string[] = ["assign-issue", "comment-issue"]; // there are more in the real product
+// there are more in the real product
+const SKIP_FIELDS: string[] = ["log-work"];
+
+// there are more in the real product
+const DIALOG_FIELDS: string[] = ["assign-issue", "comment-issue"];
 
 const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
-  return <ul>{children}</ul>;
+  return <ul className="dropdown-menu">{children}</ul>;
 };
 
 const ButtonMenuItem = ({ name }: { name: string }) => {
-  return <li>{name}</li>;
+  return <li className="menu-item">{name}</li>;
 };
 
 const LinkMenuItem = ({ name, url }: { name: string; url: string }) => {
   return (
-    <li>
+    <li className="menu-item">
       <a href={url}>{name}</a>
     </li>
   );
@@ -48,13 +43,13 @@ const IssueContextMenu = ({ data }: { data: IssueResponse }) => {
                 <ButtonMenuItem key={name} name={name} />
               ) : (
                 <LinkMenuItem key={name} name={name} url={url ?? ""} />
-              )
+              ),
             );
           }
 
           return result;
         },
-        [] as React.ReactNode[]
+        [] as React.ReactNode[],
       )}
     </DropdownMenu>
   );

@@ -5,9 +5,10 @@ import { RequestTypeBuilder as RequestTypeBuilderAfter } from "./request-type-bu
 import { RenderedIn } from "./request-type-builder/common/type.tsx";
 import { NewRequestTypeHeader } from "./request-type-builder/after/new-request-type-header.tsx";
 import { NewProjectHeader } from "./request-type-builder/after/new-project-header.tsx";
-import {IssueContextMenu, type IssueResponse} from "./collection-pipeline/before/ContextMenu.tsx";
+import {IssueContextMenu} from "./collection-pipeline/before/ContextMenu.tsx";
 
 import data from "./collection-pipeline/response.json";
+import {IssueResponse} from "./collection-pipeline/before/types.ts";
 
 const RequestTypeBuilderDemo = () => {
   return (
@@ -39,9 +40,8 @@ const CollectionPipelineDemo = () => {
 
 function App() {
   return (
-    <div>
+    <div className="root">
       <CollectionPipelineDemo />
-      <RequestTypeBuilderDemo />
     </div>
   );
 }
