@@ -1,5 +1,5 @@
-import { useState } from "react";
 import classes from "./ApprovalPanel.module.css";
+import { useApproval } from "./useApproval.ts";
 
 type ButtonProps = {
   onClick: () => void;
@@ -12,7 +12,9 @@ const Button = ({ onClick, appearance = "Default", children }: ButtonProps) => {
     <button
       onClick={onClick}
       className={
-        appearance === "Primary" ? classes.primaryButtonClass : classes.defaultButtonClass
+        appearance === "Primary"
+          ? classes.primaryButtonClass
+          : classes.defaultButtonClass
       }
     >
       {children}
@@ -20,23 +22,9 @@ const Button = ({ onClick, appearance = "Default", children }: ButtonProps) => {
   );
 };
 
-const ApprovalPanel = ({ id }: { id: string }) => {
-  const [isDone, setDone] = useState(false);
+const ApprovalPanelWithHook = ({ id }: { id: string }) => {
+  const { isDone, handleApprove, handleDecline } = useApproval(id);
 
-  const handleApprove = () => {
-    fetch(`/rest/approval/${id}/approve`, { method: "POST" })
-      .then((r) => r.json())
-      .then((data) => setDone(data.isDone));
-  };
-
-  // handleDecline...
-  const handleDecline = () => {
-    fetch(`/rest/approval/${id}/decline`, { method: "POST" })
-      .then((r) => r.json())
-      .then((data) => setDone(data.isDone));
-  };
-
-  // we only show the component when the approval isn't completed
   if (isDone) {
     return <div>The request has been resolved</div>;
   }
@@ -54,4 +42,4 @@ const ApprovalPanel = ({ id }: { id: string }) => {
   );
 };
 
-export { ApprovalPanel };
+export { ApprovalPanelWithHook };

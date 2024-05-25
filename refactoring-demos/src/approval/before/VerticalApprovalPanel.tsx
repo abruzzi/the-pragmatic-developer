@@ -1,5 +1,6 @@
 import { useState } from "react";
-import classes from "./ApprovalPanel.module.css";
+
+import classes from "./VerticalApprovalPanel.module.css";
 
 type ButtonProps = {
   onClick: () => void;
@@ -20,7 +21,7 @@ const Button = ({ onClick, appearance = "Default", children }: ButtonProps) => {
   );
 };
 
-const ApprovalPanel = ({ id }: { id: string }) => {
+const VerticalApprovalPanel = ({ id }: { id: string }) => {
   const [isDone, setDone] = useState(false);
 
   const handleApprove = () => {
@@ -44,6 +45,12 @@ const ApprovalPanel = ({ id }: { id: string }) => {
   return (
     <div className={classes.container}>
       <h2>This request requires your approval</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime
+        minus modi nisi obcaecati officiis quasi ratione similique suscipit
+        voluptas!
+      </p>
+
       <div className={classes.buttonsContainer}>
         <Button onClick={handleApprove} appearance="Primary">
           Approve
@@ -54,4 +61,4 @@ const ApprovalPanel = ({ id }: { id: string }) => {
   );
 };
 
-export { ApprovalPanel };
+export { VerticalApprovalPanel };

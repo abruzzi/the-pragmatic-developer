@@ -1,7 +1,8 @@
 .container {
   border: 1px solid #666;
+  background-color: #333;
   border-radius: 6px;
-  width: 320px;
+  width: 300px;
   padding: 1rem 2rem;
 }
 
@@ -13,20 +14,22 @@
 
 .buttonsContainer {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
   margin-top: 2rem;
 }
 
-button {
+.container button {
   appearance: none;
   padding: 0.5rem 1rem;
-  border: 1px solid #646cff;
+  border: 1px solid deeppink;
   border-radius: 6px;
   font-size: 1.2rem;
 }
 
 .primaryButtonClass {
-  background-color: #646cff;
+  background-color: deeppink;
   color: white;
 }
 
