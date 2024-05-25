@@ -9,6 +9,7 @@ import {IssueContextMenu} from "./collection-pipeline/before/ContextMenu.tsx";
 
 import data from "./collection-pipeline/response.json";
 import {IssueResponse} from "./collection-pipeline/before/types.ts";
+import {ApprovalPanel} from "./approval/before/ApprovalPanel.tsx";
 
 const RequestTypeBuilderDemo = () => {
   return (
@@ -41,7 +42,7 @@ const CollectionPipelineDemo = () => {
 function App() {
   return (
     <div className="root">
-      <CollectionPipelineDemo />
+      <ApprovalPanel id="123" />
     </div>
   );
 }
