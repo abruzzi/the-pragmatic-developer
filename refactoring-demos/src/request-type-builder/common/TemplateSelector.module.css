@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  gap: 1rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.templatesContainer {
+
+}

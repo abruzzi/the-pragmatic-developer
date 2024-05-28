@@ -1,3 +1,7 @@
-const SearchBar = () => <div>Searching...</div>
+const SearchBar = () => (
+  <div>
+    <input type="text" placeholder="Searching template..." />
+  </div>
+);
 
-export {SearchBar}
+export { SearchBar };
