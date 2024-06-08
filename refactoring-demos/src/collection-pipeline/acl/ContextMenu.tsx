@@ -1,5 +1,6 @@
-import { IssueResponse, MenuItemModel } from "./types.ts";
+import { IssueResponse } from "./types.ts";
 import "./ContextMenu.css";
+import { MenuItemModel, MenuItemType } from "./MenuItemModel.ts";
 
 const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
   return <ul className="dropdown-menu">{children}</ul>;
@@ -20,10 +21,10 @@ const IssueContextMenu = ({ data }: { data: IssueResponse }) => {
     <DropdownMenu>
       {data.operations
         .map((operation) => new MenuItemModel(operation))
-        .filter((model) => model.isLegacy)
+        .filter((model) => !model.isLegacy)
         .map((model) =>
-          model.isButtonMenu ? (
-            <ButtonMenuItem name={model.name} />
+          model.type === MenuItemType.ButtonMenuItem ? (
+            <ButtonMenuItem key={model.name} name={model.name} />
           ) : (
             <LinkMenuItem name={model.name} url={model.url} />
           ),

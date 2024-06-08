@@ -1,14 +1,12 @@
 import "./App.css";
-import {ApprovalPanel} from "./approval/before/ApprovalPanel.tsx";
+import { IssueContextMenu } from "./collection-pipeline/before/ContextMenu.tsx";
 
-const ApprovalPanelDemo = () => {
-  return <ApprovalPanel id="123" />
-}
+import data from "./collection-pipeline/response.json";
 
 function App() {
   return (
     <div className="root">
-      <ApprovalPanelDemo />
+      <IssueContextMenu data={data} />
     </div>
   );
 }
