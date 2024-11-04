@@ -1,11 +1,14 @@
 import "./App.css";
 
-import { ItemSelectorExample } from "./item-selector/before";
+import { useTemplates } from "./item-selector/before/useTemplates.tsx";
+import { TemplateSelector } from "./item-selector/before/TemplateSelector.tsx";
 
 function App() {
+  const { templates } = useTemplates();
+
   return (
     <div className="root">
-      <ItemSelectorExample />
+      <TemplateSelector templates={templates} />
     </div>
   );
 }

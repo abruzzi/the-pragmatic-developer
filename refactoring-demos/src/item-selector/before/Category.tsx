@@ -17,6 +17,7 @@ export const Category = ({
       <ol>
         {categories.map((category) => (
           <li
+            key={category.name}
             className={`${classes.category} ${
               selectedCategory === category.name ? classes.selected : ""
             }`}

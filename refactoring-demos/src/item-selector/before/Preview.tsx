@@ -16,7 +16,7 @@ const imageMap: Record<string, string> = {
 export const Preview = ({ template }: { template: Template }) => {
   return (
     <div className={classes.container}>
-      <h3>{template.name}</h3>
+      <h2>{template.name}</h2>
       <div>
         <img
           src={imageMap[template.group.name]}
