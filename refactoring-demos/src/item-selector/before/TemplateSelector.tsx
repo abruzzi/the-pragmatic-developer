@@ -6,6 +6,7 @@ import { Template } from "./type.tsx";
 import classes from "./TemplateSelector.module.css";
 import { useMemo, useState } from "react";
 import { getCategories } from "./utils.ts";
+import {Preview} from "./Preview.tsx";
 
 export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -13,6 +14,7 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
   >();
   const [filteredTemplates, setFilteredTemplates] =
     useState<Template[]>(templates);
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | undefined>();
 
   const categories = useMemo(() => {
     return getCategories(filteredTemplates);
@@ -37,6 +39,10 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
     }
   };
 
+  const selectTemplate = (template: Template) => {
+    setSelectedTemplate(template);
+  }
+
   return (
     <div>
       <h1 className={classes.header}>Request type templates</h1>
@@ -50,8 +56,13 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
           />
         </div>
         <div className={classes.templatesContainer}>
-          <TemplateList templates={filteredTemplates} />
+          <TemplateList templates={filteredTemplates} onSelectTemplate={selectTemplate} />
         </div>
+        {
+          selectedTemplate && (<div className={classes.previewTemplate}>
+            <Preview template={selectedTemplate} />
+          </div>)
+        }
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import {CategoryType, Template} from "./type.tsx";
+import { CategoryType, Template } from "./type.tsx";
 
 export const getCategories = (templates: Template[]): CategoryType[] => {
   const categoryTypes = templates.reduce(
@@ -10,7 +10,7 @@ export const getCategories = (templates: Template[]): CategoryType[] => {
       if (category) {
         category.count += 1;
       } else {
-        acc.push({name: groupName, count: 1});
+        acc.push({ name: groupName, count: 1 });
       }
 
       return acc;
@@ -18,5 +18,5 @@ export const getCategories = (templates: Template[]): CategoryType[] => {
     [],
   );
 
-  return [{name: "All", count: templates.length}, ...categoryTypes];
+  return [{ name: "All", count: templates.length }, ...categoryTypes];
 };

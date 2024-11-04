@@ -1,0 +1,11 @@
+.container {
+  max-width: 300px;
+}
+
+.container h3 {
+  margin-block: 1rem;
+}
+
+.container img {
+  width: 200px;
+}
