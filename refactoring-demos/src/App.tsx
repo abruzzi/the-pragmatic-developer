@@ -1,12 +1,11 @@
 import "./App.css";
-import { IssueContextMenu } from "./collection-pipeline/before/ContextMenu.tsx";
 
-import data from "./collection-pipeline/response.json";
+import { ItemSelectorExample } from "./item-selector/before";
 
 function App() {
   return (
     <div className="root">
-      <IssueContextMenu data={data} />
+      <ItemSelectorExample />
     </div>
   );
 }

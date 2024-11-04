@@ -1,0 +1,18 @@
+.template {
+  background-color: #333;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 20px;
+  height: 100px;
+  position: relative;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.buttons button {
+  padding: 4px 8px;
+}
