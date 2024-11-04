@@ -6,14 +6,21 @@ import { Tile } from "./Tile.tsx";
 function TemplateList({
   templates,
   onSelectTemplate,
+  selectedTemplate,
 }: {
   templates: Template[];
   onSelectTemplate: (template: Template | undefined) => void;
+  selectedTemplate: Template | undefined;
 }) {
   return (
     <ol className={classes.templates}>
-      {templates.map((t) => (
-        <Tile key={t.id} template={t} onSelectTemplate={onSelectTemplate} />
+      {templates.map((template) => (
+        <Tile
+          key={template.id}
+          template={template}
+          onSelectTemplate={onSelectTemplate}
+          isSelected={selectedTemplate?.id === template.id}
+        />
       ))}
     </ol>
   );

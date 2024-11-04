@@ -56,7 +56,7 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
           />
         </div>
         <div className={classes.templatesContainer}>
-          <TemplateList templates={filteredTemplates} onSelectTemplate={selectTemplate} />
+          <TemplateList templates={filteredTemplates} onSelectTemplate={selectTemplate} selectedTemplate={selectedTemplate} />
         </div>
         {
           selectedTemplate && (<div className={classes.previewTemplate}>
