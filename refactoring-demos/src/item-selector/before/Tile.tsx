@@ -6,13 +6,14 @@ export const Tile = ({
   onSelectTemplate,
 }: {
   template: Template;
-  onSelectTemplate: (template: Template) => void;
+  onSelectTemplate: (template: Template | undefined) => void;
 }) => {
   return (
     <li
       className={classes.template}
       tabIndex={0}
       onClick={() => onSelectTemplate(template)}
+      onBlur={() => onSelectTemplate(undefined)}
     >
       {template.name}
       <div className={classes.buttons}>

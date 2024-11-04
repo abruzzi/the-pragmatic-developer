@@ -8,7 +8,7 @@ function TemplateList({
   onSelectTemplate,
 }: {
   templates: Template[];
-  onSelectTemplate: (template: Template) => void;
+  onSelectTemplate: (template: Template | undefined) => void;
 }) {
   return (
     <ol className={classes.templates}>

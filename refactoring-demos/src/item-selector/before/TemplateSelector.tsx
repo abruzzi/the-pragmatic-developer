@@ -39,7 +39,7 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
     }
   };
 
-  const selectTemplate = (template: Template) => {
+  const selectTemplate = (template: Template | undefined) => {
     setSelectedTemplate(template);
   }
 
