@@ -1,7 +1,4 @@
-export type CategoryType = {
-  name: string;
-  count: number;
-};
+import { CategoryType } from "./type.tsx";
 
 import classes from "./Category.module.css";
 
@@ -20,7 +17,9 @@ export const Category = ({
       <ol>
         {categories.map((category) => (
           <li
-            className={`${classes.category} ${selectedCategory === category.name ? classes.selected : ''}`}
+            className={`${classes.category} ${
+              selectedCategory === category.name ? classes.selected : ""
+            }`}
             tabIndex={0}
             onClick={() => onSelectCategory(category.name)}
           >

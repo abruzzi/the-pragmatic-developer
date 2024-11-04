@@ -1,31 +1,11 @@
 import { TemplateList } from "./TemplateList.tsx";
 import { SearchBar } from "./SearchBar.tsx";
-import { Category, type CategoryType } from "./Category.tsx";
+import { Category } from "./Category.tsx";
 import { Template } from "./type.tsx";
 
 import classes from "./TemplateSelector.module.css";
 import { useMemo, useState } from "react";
-
-const getCategories = (templates: Template[]): CategoryType[] => {
-  const categoryTypes = templates.reduce(
-    (acc: CategoryType[], template: Template) => {
-      const groupName = template.group.name;
-
-      const category = acc.find((cat) => cat.name === groupName);
-
-      if (category) {
-        category.count += 1;
-      } else {
-        acc.push({ name: groupName, count: 1 });
-      }
-
-      return acc;
-    },
-    [],
-  );
-
-  return [{ name: "All", count: templates.length }, ...categoryTypes];
-};
+import { getCategories } from "./utils.ts";
 
 export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
   const [selectedCategory, setSelectedCategory] = useState<

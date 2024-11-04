@@ -1,9 +1,12 @@
-type Template = {
+export type Template = {
   id: string;
   name: string;
   group: {
     name: string;
-  }
+  };
 };
 
-export type { Template };
+export type CategoryType = {
+  name: string;
+  count: number;
+};
