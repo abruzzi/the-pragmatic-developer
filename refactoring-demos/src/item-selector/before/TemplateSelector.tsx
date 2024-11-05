@@ -17,7 +17,7 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
   const [selectedTemplate, setSelectedTemplate] = useState<Template | undefined>();
 
   const categories = useMemo(() => {
-    return getCategories(filteredTemplates);
+    return getCategories(templates, filteredTemplates);
   }, [filteredTemplates]);
 
   const handleSearch = (text: string) => {

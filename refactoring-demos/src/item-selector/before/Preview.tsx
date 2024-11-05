@@ -19,6 +19,7 @@ export const Preview = ({ template }: { template: Template }) => {
       <h2>{template.name}</h2>
       <div>
         <img
+          className={classes.image}
           src={imageMap[template.group.name]}
           alt={`${template.group.name} preview`}
         />

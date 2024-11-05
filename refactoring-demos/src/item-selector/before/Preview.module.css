@@ -3,9 +3,13 @@
 }
 
 .container h2 {
-  margin-block: 1rem;
+  margin-bottom: 1rem;
 }
 
 .container img {
   width: 200px;
+}
+
+.image {
+  border-radius: 6px;
 }
