@@ -1,0 +1,27 @@
+.header {
+  margin-block: 2rem;
+}
+
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inline {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.sidebar {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar h2 {
+  margin-block: 1rem;
+}

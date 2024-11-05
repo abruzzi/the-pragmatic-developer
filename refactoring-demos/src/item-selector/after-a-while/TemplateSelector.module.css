@@ -1,0 +1,19 @@
+.header {
+  margin-block: 2rem;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+}
+
+.sidebar {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar h2 {
+  margin-block: 1rem;
+}

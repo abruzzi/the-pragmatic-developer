@@ -1,0 +1,22 @@
+.category {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border-left: 2px solid transparent;
+}
+
+.category:hover {
+  border-left: 2px solid #666666;
+  cursor: pointer;
+}
+
+.badge {
+  background-color: #333333;
+  color: white;
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.selected {
+  border-left: 2px solid #646cff;
+}

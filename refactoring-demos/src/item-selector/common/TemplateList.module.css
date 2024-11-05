@@ -1,0 +1,12 @@
+ol.templates {
+  list-style-type: none;
+}
+
+.templates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,8 @@
+.searchBar input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchBar input {
+  padding: 6px 8px;
+}

@@ -4,17 +4,40 @@ import { Category } from "./Category.tsx";
 import { Template } from "./type.tsx";
 
 import classes from "./TemplateSelector.module.css";
-import { useMemo, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { getCategories } from "./utils.ts";
-import {Preview} from "./Preview.tsx";
+import { Preview } from "./Preview.tsx";
+import noop from "lodash/noop";
 
-export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
+type TemplateSelectorProps = {
+  isLoading?: boolean;
+  hasError?: boolean;
+  errorState: ReactNode;
+  templates: Template[];
+  onTemplateSelected?: (template: Template | undefined) => void;
+  onTemplateClick?: (template: Template) => void;
+  customPreview: ReactNode;
+  customHeader: ReactNode;
+  onCategorySelected: (category: string) => void;
+  onSearch: (keyword: string) => void;
+};
+
+export const TemplateSelector = ({
+  isLoading,
+  hasError,
+  errorState,
+  templates,
+  onTemplateSelected = noop,
+  onTemplateClick = noop,
+}: TemplateSelectorProps) => {
   const [selectedCategory, setSelectedCategory] = useState<
     string | undefined
   >();
   const [filteredTemplates, setFilteredTemplates] =
     useState<Template[]>(templates);
-  const [selectedTemplate, setSelectedTemplate] = useState<Template | undefined>();
+  const [selectedTemplate, setSelectedTemplate] = useState<
+    Template | undefined
+  >();
 
   const categories = useMemo(() => {
     return getCategories(templates, filteredTemplates);
@@ -40,7 +63,16 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
   };
 
   const selectTemplate = (template: Template | undefined) => {
+    onTemplateSelected(template);
     setSelectedTemplate(template);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (hasError) {
+    return errorState;
   }
 
   return (
@@ -56,13 +88,18 @@ export const TemplateSelector = ({ templates }: { templates: Template[] }) => {
           />
         </div>
         <div className={classes.templatesContainer}>
-          <TemplateList templates={filteredTemplates} onSelectTemplate={selectTemplate} selectedTemplate={selectedTemplate} />
+          <TemplateList
+            templates={filteredTemplates}
+            onSelectTemplate={selectTemplate}
+            selectedTemplate={selectedTemplate}
+            onTemplateClick={onTemplateClick}
+          />
         </div>
-        {
-          selectedTemplate && (<div className={classes.previewTemplate}>
+        {selectedTemplate && (
+          <div className={classes.previewTemplate}>
             <Preview template={selectedTemplate} />
-          </div>)
-        }
+          </div>
+        )}
       </div>
     </div>
   );
