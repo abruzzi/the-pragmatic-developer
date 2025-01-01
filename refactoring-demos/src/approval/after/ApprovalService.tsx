@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import {ReactNode, useEffect, useState} from "react";
 
 type ApprovalServiceProps = {
   id: string;
@@ -11,6 +11,16 @@ type ApprovalServiceProps = {
 
 const ApprovalService = ({ id, children }: ApprovalServiceProps) => {
   const [isDone, setDone] = useState(false);
+
+  useEffect(() => {
+    const checkApprovalInitStatus = async () => {
+      fetch(`/rest/approval/${id}`, )
+        .then((r) => r.json())
+        .then((data) => setDone(data.isDone));
+    }
+
+    checkApprovalInitStatus();
+  }, [id]);
 
   const handleApprove = () => {
     fetch(`/rest/approval/${id}/approve`, { method: "POST" })

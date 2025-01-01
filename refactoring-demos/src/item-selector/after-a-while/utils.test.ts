@@ -37,7 +37,6 @@ describe("get category", () => {
     ];
 
     const categories = getCategories(all, []);
-    console.log(categories);
 
     expect(categories.length).toEqual(2);
     expect(categories[0]).toEqual({ name: "All", count: 0 });
