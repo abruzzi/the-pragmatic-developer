@@ -1,4 +1,4 @@
-import { ApprovalPanel } from "./before/ApprovalPanel.tsx";
+import { ApprovalPanel } from "./after/ApprovalPanel.tsx";
 
 const ApprovalPanelDemo = () => {
   return <ApprovalPanel id="123" />;
