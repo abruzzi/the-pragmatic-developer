@@ -16,8 +16,8 @@ describe("Visual Regression Tests", () => {
 
   test("Gallery renders correctly on desktop", async () => {
     const page = await browser.newPage();
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("http://localhost:5173"); // Replace with your Vite dev server URL
+    await page.setViewportSize({ width: 1000, height: 900 });
+    await page.goto("http://localhost:5173");
 
 
     await page.waitForFunction(() => {
@@ -35,7 +35,7 @@ describe("Visual Regression Tests", () => {
 
   test("Gallery renders correctly on mobile", async () => {
     const page = await browser.newPage();
-    await page.setViewportSize({ width: 375, height: 667 }); // iPhone 6/7/8 dimensions
+    await page.setViewportSize({ width: 375, height: 800 });
     await page.goto("http://localhost:5173");
 
     await page.waitForFunction(() => {
