@@ -20,4 +20,8 @@ export const handlers = [
     const id = res.params.id;
     return HttpResponse.json({ id, isDone: true });
   }),
+
+  http.get('/api/search?q=:query', () => {
+    return HttpResponse.json(["React Testing Library", "React Hooks"])
+  })
 ];

@@ -4,8 +4,8 @@ const images = [
   'https://picsum.photos/id/15/200',
   'https://picsum.photos/id/16/200',
   'https://picsum.photos/id/17/200',
-  'https://picsum.photos/id/18/200',
   'https://picsum.photos/id/19/200',
+  'https://picsum.photos/id/18/200',
   'https://picsum.photos/id/20/200',
 ];
 
