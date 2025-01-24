@@ -1,16 +1,6 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { useSearch } from "./useSearch";
-import { vi, describe, test } from "vitest";
-
-const mockFetch = vi.fn(async (): Promise<Response> => {
-  return {
-    ok: true,
-    status: 200,
-    json: async () => ["React Testing Library", "React Hooks"],
-  } as unknown as Response;
-});
-
-global.fetch = mockFetch;
+import { describe, test } from "vitest";
 
 describe("useSearch", () => {
   test("updates query state when setQuery is called", () => {
