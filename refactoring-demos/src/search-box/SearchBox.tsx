@@ -1,7 +1,10 @@
 import { useSearch } from './useSearch';
+import {SearchResult} from "./types.ts";
 
 export function SearchBox() {
-  const { query, setQuery, results } = useSearch();
+  const { query, setQuery, results } = useSearch<SearchResult>();
+
+  console.log(results);
 
   return (
     <div className="flex flex-col items-center p-4 min-h-screen w-screen">
@@ -21,10 +24,10 @@ export function SearchBox() {
         <ul className="space-y-2">
           {results.map((result) => (
             <li
-              key={result}
+              key={result.id}
               className="p-3 rounded-md bg-slate-800 shadow hover:bg-slate-600 transition-colors"
             >
-              {result}
+              {result.name}
             </li>
           ))}
         </ul>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-export function useSearch() {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
+export function useSearch<T>() {
+  const [query, setQuery] = useState<string>("");
+  const [results, setResults] = useState<T[]>([]);
 
   useEffect(() => {
     if (query.trim()) {
