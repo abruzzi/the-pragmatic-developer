@@ -1,10 +1,8 @@
-import { useSearch } from './useSearch';
+import { useSearch } from './useSearch.tsx';
 import {SearchResult} from "./types.ts";
 
 export function SearchBox() {
   const { query, setQuery, results } = useSearch<SearchResult>();
-
-  console.log(results);
 
   return (
     <div className="flex flex-col items-center p-4 min-h-screen w-screen">
