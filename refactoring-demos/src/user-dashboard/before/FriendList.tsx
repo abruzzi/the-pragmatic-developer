@@ -1,10 +1,25 @@
-import {User} from "../types.ts";
+import { User } from "../types.ts";
+import { useEffect, useState } from "react";
 import classes from "./UserDashboard.module.css";
+import {Loading} from "./Loading.tsx";
 
-export const FriendList = ({friends}: { friends: User[] }) => {
+export const FriendList = ({ friendOf }: { friendOf: string }) => {
+  const [friends, setFriends] = useState<User[] | null>();
+
+  useEffect(() => {
+    fetch(`/api/users/${friendOf}/friends`)
+      .then((res) => res.json())
+      .then((data) => setFriends(data))
+      .catch((e) => console.error(e));
+  }, [friendOf]);
+
+  if (!friends) {
+    return <Loading>Loading friends...</Loading>;
+  }
+
   return (
-    <>
-      <h2>Friends</h2>
+    <div className="py-4">
+      <h2 className="text-2xl">Friends</h2>
       <ul>
         {friends.map((friend) => (
           <li key={friend.name}>
@@ -22,6 +37,6 @@ export const FriendList = ({friends}: { friends: User[] }) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
