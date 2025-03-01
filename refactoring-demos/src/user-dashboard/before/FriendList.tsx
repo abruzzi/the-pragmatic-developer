@@ -1,7 +1,7 @@
 import { User } from "../types.ts";
 import { useEffect, useState } from "react";
 import classes from "./UserDashboard.module.css";
-import {Loading} from "./Loading.tsx";
+import {Loading} from "../common/Loading.tsx";
 
 export const FriendList = ({ friendOf }: { friendOf: string }) => {
   const [friends, setFriends] = useState<User[] | null>();

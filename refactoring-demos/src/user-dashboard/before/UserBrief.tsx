@@ -2,7 +2,7 @@ import { User } from "../types.ts";
 import classes from "./UserDashboard.module.css";
 import { useEffect, useState } from "react";
 import { FriendList } from "./FriendList.tsx";
-import {Loading} from "./Loading.tsx";
+import { Loading } from "../common/Loading.tsx";
 
 export function UserBrief({ id }: { id: string }) {
   const [user, setUser] = useState<User>();

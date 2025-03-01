@@ -1,7 +1,7 @@
 import { Post } from "../types.ts";
 import classes from "./UserDashboard.module.css";
 import { useEffect, useState } from "react";
-import {Loading} from "./Loading.tsx";
+import {Loading} from "../common/Loading.tsx";
 
 export const PostList = () => {
   const [posts, setPosts] = useState<Post[] | null>();
