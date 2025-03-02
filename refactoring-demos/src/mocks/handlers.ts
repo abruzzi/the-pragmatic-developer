@@ -40,6 +40,23 @@ export const handlers = [
     return HttpResponse.json(posts);
   }),
 
+  http.get('/api/users/v2/:id', async (res) => {
+    const id = res.params.id;
+
+    const user = users.find(user => user.id === id);
+    await delay(2000);
+
+    if(user?.friends) {
+      const friends = users.filter(u => user.friends.includes(u.id));
+      return HttpResponse.json({
+        ...user,
+        friends
+      });
+    }
+
+    return HttpResponse.json(user);
+  }),
+
   http.get("/rest/approval/:id", (res) => {
     const id = res.params.id;
 

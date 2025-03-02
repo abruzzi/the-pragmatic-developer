@@ -1,0 +1,63 @@
+.dashboardContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  margin-block: 1rem;
+  text-transform: uppercase;
+}
+
+.text-secondary {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.brief {
+  display: flex;
+  gap: 1rem;
+  margin-block: 1rem;
+}
+
+.friendBrief {
+  display: flex;
+  gap: 1rem;
+  margin-block: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.bio {
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.small {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.post {
+  margin-block: 1rem;
+}
+
+.post .summary {
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.7);
+}
