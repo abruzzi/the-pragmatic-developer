@@ -1,10 +1,11 @@
 import "./App.css";
 
-import {UserDashboardDemo} from "./user-dashboard/UserDashboardDemo.tsx";
+import { SearchBox } from "./search-box/SearchBox.tsx";
 
 export default function App() {
-    return (
-        <UserDashboardDemo />
-    )
+  return (
+    <div className="flex justify-center p-8">
+      <SearchBox />
+    </div>
+  );
 }
-
