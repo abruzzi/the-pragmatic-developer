@@ -1,26 +1,5 @@
 import { useEffect, useState } from "react";
-
-type UserType = {
-  id: string;
-  name: string;
-};
-
-type CardType = {
-  id: string;
-  title: string;
-  assignee?: UserType;
-};
-
-type ColumnType = {
-  id: string;
-  name: string;
-  cards: CardType[];
-};
-
-export type BoardType = {
-  name: string;
-  columns: ColumnType[];
-};
+import { BoardType, CardType, ColumnType } from "./types.tsx";
 
 const Card = ({ card }: { card: CardType }) => {
   return (
@@ -78,8 +57,8 @@ export const Board = ({ boardId }: { boardId: string }) => {
   };
 
   const handleClick = () => {
-    changeUserName("u1", "Juntao Q")
-  }
+    changeUserName("u1", "Juntao Q");
+  };
 
   return (
     <div>
