@@ -40,7 +40,3 @@ export const normalizeBoard = (input: BoardType): NormalizedBoardType => {
     users,
   };
 };
-
-/*
-
- */
