@@ -1,0 +1,20 @@
+.row-container {
+  height: 200px;
+  width: 400px;
+  overflow: auto;
+}
+
+.row {
+  height: 36px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.odd {
+  background-color: #494949;
+}
+
+.even {
+  background-color: #0e0e0e;
+}

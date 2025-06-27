@@ -19,8 +19,6 @@ export const boardSlice = createSlice({
       return { ...state, ...action.payload };
     },
     changeUserName: (state, action: PayloadAction<{ id: string; name: string }>) => {
-      console.log(action.payload);
-
       const { id, name } = action.payload;
       return {
         ...state,
