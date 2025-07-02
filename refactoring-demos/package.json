@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
+    "@tanstack/react-query": "^5.81.5",
     "@tanstack/react-virtual": "^3.13.11",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
