@@ -1,24 +1,107 @@
 import { FormEvent, useState } from "react";
-import { CommentType, FeedItemType } from "./types.ts";
+import { FeedItemType } from "./types.ts";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { commentFeed, likeFeed } from "./apis.ts";
 
-export const FeedItem = ({
-  feed,
-  onLike,
-  onComment,
-}: {
+type FeedItemProps = {
   feed: FeedItemType;
-  onLike: (id: number) => void;
-  onComment: (comment: CommentType) => void;
-}) => {
+};
+
+export const FeedItem = ({ feed }: FeedItemProps) => {
   const [commentText, setCommentText] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);
 
+  const queryClient = useQueryClient();
+
+  const addCommentMutation = useMutation({
+    mutationFn: commentFeed,
+    onMutate: async ({ id, author, text }) => {
+      await queryClient.cancelQueries({ queryKey: ["feeds"] });
+
+      const previousFeeds = queryClient.getQueryData(["feeds"]);
+
+      const tempId = Date.now();
+
+      queryClient.setQueryData(["feeds"], (feeds: FeedItemType[]) =>
+        feeds.map((feed) => {
+          if (feed.id === id) {
+            return {
+              ...feed,
+              comments: [
+                ...(feed?.comments ?? []),
+                { id: tempId, author, text },
+              ],
+            };
+          }
+          return feed;
+        }),
+      );
+
+      return { previousFeeds, tempId };
+    },
+    onError: (err, variables, context) => {
+      console.log(err);
+
+      queryClient.setQueryData(["feeds"], context?.previousFeeds);
+
+      setCommentText(variables.text);
+      setIsCommenting(true);
+    },
+
+    onSuccess: (serverFeed, variables, context) => {
+      queryClient.setQueryData(["feeds"], (feeds: FeedItemType[] = []) =>
+        feeds.map((feed) => {
+          if (feed.id === variables.id) {
+            const updatedComments = (feed.comments ?? []).map((comment) =>
+              comment.id === context.tempId
+                ? serverFeed.comments.at(-1)
+                : comment,
+            );
+
+            return {
+              ...feed,
+              comments: updatedComments,
+            };
+          }
+
+          return feed;
+        }),
+      );
+    },
+
+    // Optionally refetch to ensure fresh data
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["feeds"] });
+    },
+  });
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!commentText.trim()) return;
-    onComment({ id: 0, author: "You", text: commentText });
+
+    if (!commentText.trim()) {
+      return;
+    }
+
+    addCommentMutation.mutate({
+      id: feed.id,
+      author: "You",
+      text: commentText,
+    });
+
     setCommentText("");
     setIsCommenting(false);
+  };
+
+  const likeMutation = useMutation({
+    mutationFn: likeFeed,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["feeds"] });
+    },
+  });
+
+  const handleLike = (id: number) => {
+    likeMutation.mutate(id);
   };
 
   return (
@@ -27,8 +110,11 @@ export const FeedItem = ({
       <p className="text-gray-200 my-2">{feed.content}</p>
 
       <div className="flex items-center space-x-4 text-sm text-gray-300">
-        <button onClick={() => onLike(feed.id)} className="hover:text-blue-500">
-          ❤️ {feed.likes}
+        <button
+          onClick={() => handleLike(feed.id)}
+          className="hover:text-blue-500"
+        >
+          💙 {feed.likes}
         </button>
         <button
           onClick={() => setIsCommenting((v) => !v)}

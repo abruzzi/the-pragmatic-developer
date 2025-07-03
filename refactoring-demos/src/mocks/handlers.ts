@@ -51,14 +51,12 @@ export const handlers = [
   http.post<{ id: string }>("/api/feeds/:id/like", async ({ params }) => {
     const id = Number(params.id);
 
-    console.log(localFeeds);
-
-    localFeeds = localFeeds.map(feed => {
-      if(feed.id === id) {
+    localFeeds = localFeeds.map((feed) => {
+      if (feed.id === id) {
         return {
           ...feed,
           likes: (feed?.likes ?? 0) + 1,
-        }
+        };
       }
       return feed;
     });
@@ -66,23 +64,35 @@ export const handlers = [
     return HttpResponse.json(localFeeds.find((feed) => feed.id === id));
   }),
 
-  http.post<{ id: string }>("/api/feeds/:id/comment", async ({ request, params }) => {
-    const id = Number(params.id);
+  http.post<{ id: string }>(
+    "/api/feeds/:id/comment",
+    async ({ request, params }) => {
+      const id = Number(params.id);
+      await delay(2000);
 
-    const newComment = await request.clone().json();
-
-    localFeeds = localFeeds.map(feed => {
-      if(feed.id === id) {
-        return {
-          ...feed,
-          comments: [...(feed?.comments ?? []), newComment],
-        }
+      if (id === 2) {
+        return HttpResponse.json(
+          { message: "Feed is locked" },
+          { status: 403 },
+        );
       }
-      return feed;
-    });
 
-    return HttpResponse.json(localFeeds.find((feed) => feed.id === id));
-  }),
+      const newComment = await request.clone().json();
+
+      // @ts-expect-error comments
+      localFeeds = localFeeds.map((feed) => {
+        if (feed.id === id) {
+          return {
+            ...feed,
+            comments: [...(feed?.comments ?? []), newComment],
+          };
+        }
+        return feed;
+      });
+
+      return HttpResponse.json(localFeeds.find((feed) => feed.id === id));
+    },
+  ),
 
   http.get("/api/users/v2/:id", async (res) => {
     const id = res.params.id;

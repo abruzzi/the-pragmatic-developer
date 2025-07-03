@@ -1,6 +1,6 @@
 import React from "react";
-import './styles.css';
-import {useVirtualizer} from "@tanstack/react-virtual";
+import "./styles.css";
+import { useVirtualizer } from "@tanstack/react-virtual";
 
 export const BigList = () => {
   const parentRef = React.useRef(null);
@@ -13,11 +13,11 @@ export const BigList = () => {
   });
 
   return (
-    <div ref={parentRef} className='row-container'>
+    <div ref={parentRef} className="row-container">
       <div
         style={{
           height: `${rowVirtualizer.getTotalSize()}px`,
-          position: 'relative',
+          position: "relative",
         }}
       >
         {rowVirtualizer.getVirtualItems().map((virtualRow) => (
@@ -25,10 +25,10 @@ export const BigList = () => {
             key={virtualRow.index}
             className={`${virtualRow.index % 2 ? "odd" : "even"} row`}
             style={{
-              position: 'absolute',
+              position: "absolute",
               top: 0,
               left: 0,
-              width: '100%',
+              width: "100%",
               height: `${virtualRow.size}px`,
               transform: `translateY(${virtualRow.start}px)`,
             }}
@@ -39,4 +39,4 @@ export const BigList = () => {
       </div>
     </div>
   );
-}
+};

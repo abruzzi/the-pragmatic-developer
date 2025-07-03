@@ -2,12 +2,12 @@ import "./App.css";
 
 import { store } from "./store";
 import { Provider } from "react-redux";
-import { BigListApp } from "./system-design-essentials/virtualisation/BigListApp.tsx";
+import { FeedApp } from "./system-design-essentials/optimistic-update/FeedApp.tsx";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <BigListApp />
+      <FeedApp />
     </Provider>
   );
 }
