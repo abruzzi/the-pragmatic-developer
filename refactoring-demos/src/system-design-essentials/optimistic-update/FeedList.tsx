@@ -1,4 +1,4 @@
-import { FeedItem } from "./FeedItem.js";
+import { FeedItem } from "./before/FeedItem.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { getFeeds } from "./apis.ts";
 

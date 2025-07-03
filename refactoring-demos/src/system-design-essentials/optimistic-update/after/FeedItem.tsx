@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
-import { FeedItemType } from "./types.ts";
+import { FeedItemType } from "../types.ts";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { commentFeed, likeFeed } from "./apis.ts";
+import { commentFeed, likeFeed } from "../apis.ts";
 
 type FeedItemProps = {
   feed: FeedItemType;
