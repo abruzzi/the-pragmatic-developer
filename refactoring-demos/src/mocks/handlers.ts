@@ -50,6 +50,7 @@ export const handlers = [
 
   http.post<{ id: string }>("/api/feeds/:id/like", async ({ params }) => {
     const id = Number(params.id);
+    await delay(2000);
 
     localFeeds = localFeeds.map((feed) => {
       if (feed.id === id) {

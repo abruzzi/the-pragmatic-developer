@@ -1,12 +1,12 @@
 import React from "react";
 import "./styles.css";
-import { useVirtualizer } from "@tanstack/react-virtual";
+import {useVirtualizer, VirtualItem} from "@tanstack/react-virtual";
 
 export const BigList = () => {
   const parentRef = React.useRef(null);
 
   const rowVirtualizer = useVirtualizer({
-    count: 20000,
+    count: 100000,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 36,
     overscan: 5,
@@ -20,7 +20,7 @@ export const BigList = () => {
           position: "relative",
         }}
       >
-        {rowVirtualizer.getVirtualItems().map((virtualRow) => (
+        {rowVirtualizer.getVirtualItems().map((virtualRow: VirtualItem) => (
           <div
             key={virtualRow.index}
             className={`${virtualRow.index % 2 ? "odd" : "even"} row`}

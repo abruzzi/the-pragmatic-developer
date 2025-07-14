@@ -39,6 +39,7 @@ export const FeedItem = ({ feed }: FeedItemProps) => {
 
       return { previousFeeds, tempId };
     },
+
     onError: (err, variables, context) => {
       console.log(err);
 

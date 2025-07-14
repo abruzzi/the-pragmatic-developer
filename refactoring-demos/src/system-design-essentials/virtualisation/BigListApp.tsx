@@ -1,9 +1,9 @@
-import { FeedApp } from "../optimistic-update/FeedApp.tsx";
+import {BigList} from "./after/BigList.tsx";
 
 export const BigListApp = () => {
   return (
     <div className="root">
-      <FeedApp />
+      <BigList />
     </div>
   );
 };

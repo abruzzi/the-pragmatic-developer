@@ -8,9 +8,16 @@ export const feeds = [
   },
   {
     id: 2,
-    author: "Alice",
+    author: "Kakie",
     content: "Tailwind makes styling so much fun 🎨",
     likes: 2,
+    comments: [],
+  },
+  {
+    id: 3,
+    author: "Anna",
+    content: "Tomorrow is another day",
+    likes: 0,
     comments: [],
   },
 ];

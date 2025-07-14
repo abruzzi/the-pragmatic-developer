@@ -60,7 +60,8 @@ export const FeedItem = ({ feed }: FeedItemProps) => {
           onClick={() => handleLike(feed.id)}
           className="hover:text-blue-500"
         >
-          💙 {feed.likes}
+          {likeMutation.isPending && <>🧡...</>}
+          {!likeMutation.isPending && <>💙 {feed.likes}</>}
         </button>
         <button
           onClick={() => setIsCommenting((v) => !v)}
@@ -82,7 +83,7 @@ export const FeedItem = ({ feed }: FeedItemProps) => {
           />
           <button
             type="submit"
-            className="mt-1 px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+            className={`mt-1 px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 ${isPending ? 'bg-orange-600 hover:bg-orange-600' : ''}`}
             disabled={isPending}
           >
             Submit
